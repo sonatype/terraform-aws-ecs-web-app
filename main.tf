@@ -22,7 +22,7 @@ resource "aws_cloudwatch_log_group" "app" {
 
 module "alb_ingress" {
   source  = "cloudposse/alb-ingress/aws"
-  version = "0.24.1"
+  version = "0.24.2"
 
   vpc_id                           = var.vpc_id
   port                             = var.container_port
@@ -178,8 +178,7 @@ module "ecs_alb_service_task" {
 
 module "ecs_codepipeline" {
   enabled = var.codepipeline_enabled
-  source  = "cloudposse/ecs-codepipeline/aws"
-  version = "0.28.4"
+  source  = "git::https://github.com/sonatype/terraform-aws-ecs-codepipeline.git?ref=tags/0.28.6"
 
   region                      = coalesce(var.region, data.aws_region.current.name)
   github_oauth_token          = var.github_oauth_token
@@ -229,7 +228,7 @@ module "ecs_codepipeline" {
 module "ecs_cloudwatch_autoscaling" {
   enabled               = var.autoscaling_enabled
   source                = "cloudposse/ecs-cloudwatch-autoscaling/aws"
-  version               = "0.7.2"
+  version               = "0.7.3"
   name                  = var.name
   namespace             = var.namespace
   stage                 = var.stage
