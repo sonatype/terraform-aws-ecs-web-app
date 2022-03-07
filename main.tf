@@ -178,7 +178,7 @@ module "ecs_alb_service_task" {
 
 module "ecs_codepipeline" {
   enabled = var.codepipeline_enabled
-  source  = "git::https://github.com/sonatype/terraform-aws-ecs-codepipeline.git?ref=tags/0.28.6"
+  source  = "git::https://github.com/sonatype/terraform-aws-ecs-codepipeline.git?ref=tags/0.28.7"
 
   region                      = coalesce(var.region, data.aws_region.current.name)
   github_oauth_token          = var.github_oauth_token
